@@ -1,9 +1,17 @@
 <h1>Reports</h1>
 
-<div *ngFor="let customer of customers" style="width: 300px;">
-    {{customer.latitude}}
-    {{customer.longitude}}
-    {{customer.status}}
-    {{customer.date}}
-    {{customer.details}}
+<div>
+    <ul>
+        <li *ngFor="let report of reports | async">
+           {{ report.current_date}}
+           {{ report.latitude }}
+           {{ report.longitude }}
+           {{ report.status}}
+           {{ report.user_id}}
+           {{ report.details}}
+           {{ report.photo.image_url}}
+
+        </li>
+      </ul>
+
 </div>

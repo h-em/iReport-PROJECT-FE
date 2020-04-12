@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../report.service';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -9,15 +11,24 @@ import { map } from 'rxjs/operators';
 })
 export class ReportsListComponent implements OnInit {
 
-  reports: any;
 
+  //mine 
+  reports: Observable<any[]>;
+  service : ReportService;
 
-  constructor(private reportService: ReportService) { }
-
-  ngOnInit() {
-    this.getReportsList();
+  constructor(reportService: ReportService) {
+    this.service = reportService; 
   }
 
+  ngOnInit() {
+    this.setReportsList();
+  }
+
+  setReportsList(){
+    this.reports = this.service.getReportsList();
+  }
+
+/*
   getReportsList(){
     this.reportService.getReportsList().snapshotChanges().pipe(
       map(changes =>
@@ -28,6 +39,6 @@ export class ReportsListComponent implements OnInit {
     ).subscribe(reports => {
       this.reports = reports;
     });
-  }
+  }*/
 
 }  
