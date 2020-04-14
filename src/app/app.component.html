@@ -11,14 +11,12 @@
 
 <div>
   <app-reports-list></app-reports-list>
+</div>
 
-  <div>
-    <agm-map [latitude]="latitude" [longitude]="longitude"  (mapClick)="onChoseLocation($event)">
-      <agm-marker [latitude]="latitude" [longitude]="longitude" ></agm-marker>
-    </agm-map>
-  
-  </div>
-
+<div>
+  <agm-map [latitude]="latitude" [longitude]="longitude"  (mapClick)="onChoseLocation($event)">
+    <agm-marker [latitude]="latitude" [longitude]="longitude" ></agm-marker>
+  </agm-map>
 </div>
 
 
