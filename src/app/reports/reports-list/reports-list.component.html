@@ -1,26 +1,28 @@
-<div class ="item">
+<div class="item">
   <ul>
-    <li *ngFor="let report of reports | async">
 
+    <li *ngFor="let report of reports | async" (click)="getLocation($event, report.latitude, report.longitude)" >
 
       <div class="row">
 
         <div class="left imgdiv">
-          <img class="img" src="https://cdn1.iconfinder.com/data/icons/business-users/512/circle-512.png" alt="user_image">
+          <img class="img" src="https://cdn1.iconfinder.com/data/icons/business-users/512/circle-512.png"
+            alt="user_image">
         </div>
 
         <div class="right text_align">
-          User: <span><b>{{ report.user_id}}</b></span> <br><br>
-          Date: {{ report.current_date}}<br>
-          Status: {{ report.status}}<br>
-          Details: {{ report.details}}
+
+            User: <span><b>{{ report.user_id}}</b></span> <br><br>
+            Date: {{ report.current_date}}<br>
+            Status: {{ report.status}}<br>
+            Details: {{ report.details}}
+
         </div>
+
       </div>
 
-      <!--
-   {{ report.photo.image_url}}
-      {{ report.photo.image_url}}
-      -->
     </li>
-  </ul>  
+
+  </ul>
+
 </div>

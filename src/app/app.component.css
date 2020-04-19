@@ -4,7 +4,6 @@ agm-map{
 
 .row{
   height: 100%;
-  background-color: yellow;
 
 }
 
@@ -14,7 +13,6 @@ agm-map{
   
 .left {
   width: 25%;
-  background-color: violet;
   height: 100%;
   overflow: auto;
 
@@ -22,7 +20,6 @@ agm-map{
   
 .right {
   width: 75%;
-  background-color: teal;
   height: 100%;
 }
 

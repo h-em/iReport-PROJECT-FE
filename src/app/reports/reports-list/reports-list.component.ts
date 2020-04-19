@@ -16,6 +16,7 @@ export class ReportsListComponent implements OnInit {
   reports: Observable<any[]>;
   service: ReportService;
 
+
   constructor(reportService: ReportService) {
     this.service = reportService;
   }
@@ -26,6 +27,11 @@ export class ReportsListComponent implements OnInit {
 
   setReportsList() {
     this.reports = this.service.getReportsList();
+  }
+
+  getLocation(event, latitude, longitude){
+    alert(latitude + " " + longitude);
+    this.service.setLocation(latitude, longitude);
   }
 
 }  
