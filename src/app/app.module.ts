@@ -10,12 +10,14 @@ import { environment } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReportsListComponent } from './reports/reports-list/reports-list.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReportsListComponent
+    ReportsListComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,

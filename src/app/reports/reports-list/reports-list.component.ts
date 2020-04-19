@@ -14,31 +14,18 @@ export class ReportsListComponent implements OnInit {
 
   //mine 
   reports: Observable<any[]>;
-  service : ReportService;
+  service: ReportService;
 
   constructor(reportService: ReportService) {
-    this.service = reportService; 
+    this.service = reportService;
   }
 
   ngOnInit() {
     this.setReportsList();
   }
 
-  setReportsList(){
+  setReportsList() {
     this.reports = this.service.getReportsList();
   }
-
-/*
-  getReportsList(){
-    this.reportService.getReportsList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe(reports => {
-      this.reports = reports;
-    });
-  }*/
 
 }  
