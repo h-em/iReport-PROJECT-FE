@@ -1,4 +1,53 @@
 .item{
     margin: -14px -8px 0 -8px;
-    background-color: #1976d2;
+    background-color: #8abcee;
+}
+
+li, ul{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+ul {
+    list-style: none;
+    margin-right: -8px;
+    padding: 0;
+    overflow: auto;
+    overflow-y: scroll;
+    height: 100%;
+    margin-bottom: 35px;
+
+
+}
+
+li {
+    padding: 5px 10px;
+    background-color: #EEEEEE;
+    border: 1px solid #DDDDDD;
+}
+
+.img{
+    width: 50%;
+    padding: 17px;
+}
+
+.imgdiv{
+    margin: auto;
+}
+
+
+.row {
+    display: flex;
+}
+
+
+.left {
+    width: 20%;
+    /*background-color: red;*/
+}
+  
+.right {
+    width: 80%;
+    /*background-color: seagreen;*/
+    padding: 5px;
 }

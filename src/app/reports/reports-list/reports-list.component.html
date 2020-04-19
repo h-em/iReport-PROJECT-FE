@@ -1,12 +1,22 @@
 <div class ="item">
   <ul>
     <li *ngFor="let report of reports | async">
-      {{ report.current_date}}
-      {{ report.latitude }}
-      {{ report.longitude }}
-      {{ report.status}}
-      {{ report.user_id}}
-      {{ report.details}}
+
+
+      <div class="row">
+
+        <div class="left imgdiv">
+          <img class="img" src="https://cdn1.iconfinder.com/data/icons/business-users/512/circle-512.png" alt="user_image">
+        </div>
+
+        <div class="right text_align">
+          User: {{ report.user_id}} <br><br>
+          Date: {{ report.current_date}}<br>
+          Status: {{ report.status}}<br>
+          Details: {{ report.details}}
+        </div>
+      </div>
+
       <!--
    {{ report.photo.image_url}}
       {{ report.photo.image_url}}
