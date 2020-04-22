@@ -9,12 +9,12 @@
 <div class="row">
 
   <div class="column left">
-    <app-reports-list></app-reports-list>
+    <app-reports-list (valueChange)='onReportListEvent($event)'></app-reports-list>
   </div>
 
   <div class="column right">
     
-    <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+    <agm-map [latitude]="latitude" [longitude]="longitude">
       <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
     </agm-map>
   </div>

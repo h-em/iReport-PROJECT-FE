@@ -12,8 +12,8 @@ export class ReportService {
   private basePath: string = '/reports';
   reports: Observable<any[]>;
 
-  latitude:string = "";
-  longitude:string = "";
+  latitude;
+  longitude;
 
   constructor(private db: AngularFireDatabase) {
     this.reports = db.list(this.basePath).valueChanges();
@@ -23,20 +23,15 @@ export class ReportService {
     return this.reports;
   }
 
-  setLocation(lat,long){
-    //alert(lat + " " + long);
-
+  setLocation(lat, long){
     this.latitude = lat;
     this.longitude = long;
   }
 
   getLocation(){
-    //alert(this.latitude + " " + this.longitude);
-
-    return {
-      lat : this.latitude,
-      long : this.longitude
-    }
+      var x = this.latitude;
+      var y = this.longitude;
+      return {x,y};
   }
 
 }

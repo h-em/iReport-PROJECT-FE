@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReportService } from '../app/reports/report.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,22 +10,25 @@ import { ReportService } from '../app/reports/report.service';
 
 export class AppComponent{
   title = 'iReport';
-  
- // service: ReportService;
 
   latitude = 47.63333;
   longitude = 26.25;
 
-  /*constructor(reportService: ReportService) {
-    this.service = reportService;
-  }*/
+  service: ReportService;
 
- /* onChoseLocation(event){
+  constructor(reportService: ReportService) {
+    this.service = reportService;
+  }
+
+  onReportListEvent(event){
+    this.latitude = event.latitude;
+    this.longitude = event.longitude;
+  }
+
+  onChoseLocation(event){
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
-  }*/
+  }
 
-  /*setLocation(latitude, longitude){
 
-  }*/
 }

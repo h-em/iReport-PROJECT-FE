@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReportService } from '../report.service';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reports-list',
@@ -16,7 +14,10 @@ export class ReportsListComponent implements OnInit {
   reports: Observable<any[]>;
   service: ReportService;
 
+  @Output() valueChange = new EventEmitter<{latitude:any, longitude:any}>();
 
+
+  
   constructor(reportService: ReportService) {
     this.service = reportService;
   }
@@ -24,14 +25,16 @@ export class ReportsListComponent implements OnInit {
   ngOnInit() {
     this.setReportsList();
   }
-
+  // from db
   setReportsList() {
     this.reports = this.service.getReportsList();
   }
 
-  getLocation(event, latitude, longitude){
-    alert(latitude + " " + longitude);
-    this.service.setLocation(latitude, longitude);
+  getLocationFromItem(event, latitude, longitude ){
+
+    alert(latitude+ " "+ longitude);
+
+    this.valueChange.emit({latitude : 40, longitude : 40});
   }
 
 }  
