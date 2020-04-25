@@ -25,8 +25,9 @@ export class AppComponent{
     this.longitude = event.longitude;
   }
 
+  /*
   onChoseLocation(event){
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
-  }
+  }*/
 }

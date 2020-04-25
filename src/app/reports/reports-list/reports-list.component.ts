@@ -31,9 +31,7 @@ export class ReportsListComponent implements OnInit {
   }
 
   getLocationFromItem(latitude, longitude ){
-
-    alert(latitude+ " "+ longitude);
-
+    //alert(latitude+ " "+ longitude);
     this.valueChange.emit({latitude : latitude, longitude : longitude});
   }
 
