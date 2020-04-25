@@ -1,7 +1,7 @@
 <div class="item">
   <ul>
 
-    <li *ngFor="let report of reports | async" (click)="getLocationFromItem($event, report.latitude, report.longitude)" >
+    <li *ngFor="let report of reports | async" (click)="getLocationFromItem(report.latitude, report.longitude)" >
 
       <div class="row">
 

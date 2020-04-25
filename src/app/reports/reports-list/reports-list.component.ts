@@ -30,11 +30,11 @@ export class ReportsListComponent implements OnInit {
     this.reports = this.service.getReportsList();
   }
 
-  getLocationFromItem(event, latitude, longitude ){
+  getLocationFromItem(latitude, longitude ){
 
     alert(latitude+ " "+ longitude);
 
-    this.valueChange.emit({latitude : 40, longitude : 40});
+    this.valueChange.emit({latitude : latitude, longitude : longitude});
   }
 
 }  

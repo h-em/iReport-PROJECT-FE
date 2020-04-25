@@ -29,6 +29,4 @@ export class AppComponent{
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
   }
-
-
 }
