@@ -15,8 +15,23 @@
   <div class="column right">
     
     <agm-map [latitude]="latitude" [longitude]="longitude">
-      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      <agm-marker 
+        [latitude]="latitude"
+        [longitude]="longitude"  
+        (markerClick)="displayModal()">
+      </agm-marker>
     </agm-map>
+
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" (click)="hideModal()">&times;</span>
+        <p >Some text in the Modal..</p>
+      </div>
+    
+    </div>
+
   </div>
 
 </div>

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { ReportsListComponent } from './reports/reports-list/reports-list.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

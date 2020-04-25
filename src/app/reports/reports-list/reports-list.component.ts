@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReportService } from '../report.service';
 import { Observable } from 'rxjs';
+import { Report } from 'src/app/model/report';
 
 @Component({
   selector: 'app-reports-list',
@@ -15,9 +16,8 @@ export class ReportsListComponent implements OnInit {
   service: ReportService;
 
   @Output() valueChange = new EventEmitter<{latitude:any, longitude:any}>();
+  //@Output() valueChange = new EventEmitter<{report:Report}>();
 
-
-  
   constructor(reportService: ReportService) {
     this.service = reportService;
   }
@@ -30,9 +30,12 @@ export class ReportsListComponent implements OnInit {
     this.reports = this.service.getReportsList();
   }
 
-  getLocationFromItem(latitude, longitude ){
+  getLocationFromItem(report){
     //alert(latitude+ " "+ longitude);
-    this.valueChange.emit({latitude : latitude, longitude : longitude});
+    var lat = report.latitude;
+    var long = report.longitude;
+    this.valueChange.emit({latitude : lat, longitude : long});
+    //this.valueChange.emit({report:report});
   }
 
 }  

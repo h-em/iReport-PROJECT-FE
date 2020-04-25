@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReportService } from '../app/reports/report.service';
+import { Report } from 'src/app/model/report';
+
 
 @Component({
   selector: 'app-root',
@@ -15,19 +17,42 @@ export class AppComponent{
   longitude = 26.25;
 
   service: ReportService;
+  report: Report;
 
   constructor(reportService: ReportService) {
     this.service = reportService;
   }
 
-  onReportListEvent(event){
+  onReportListEvent(event, report){
     this.latitude = event.latitude;
     this.longitude = event.longitude;
+    this.report = report;
+    
+    console.log(report);
   }
 
-  /*
-  onChoseLocation(event){
-    this.latitude = event.coords.lat;
-    this.longitude = event.coords.lng;
-  }*/
+  onReportEvent(report){
+    console.log(report);
+  }
+
+
+  displayModal(){
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    //display the modal
+    modal.style.display = "block";
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  hideModal(){
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
 }
