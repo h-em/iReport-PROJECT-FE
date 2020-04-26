@@ -9,7 +9,7 @@
 <div class="row">
 
   <div class="column left">
-    <app-reports-list (valueChange)='onReportListEvent($event)'></app-reports-list>
+    <app-reports-list (onItemClicked)='onReportListEvent($event)' (onObjectPicked)='setReport($event)'></app-reports-list>
   </div>
 
   <div class="column right">
@@ -27,7 +27,9 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close" (click)="hideModal()">&times;</span>
-        <p >Some text in the Modal..</p>
+        <p >User: {{report.user_id}}</p>
+        <img src="{{report.photo.image_url}}"  alt="Report photo.">
+        <p >Details: {{report.details}}</p>
       </div>
     
     </div>

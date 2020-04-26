@@ -107,7 +107,15 @@ agm-map{
     text-decoration: none;
     cursor: pointer;
   }
-
+/*
+  img:before{
+      content: ' ';
+      display: block;
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png);
+  }*/
 
 
 

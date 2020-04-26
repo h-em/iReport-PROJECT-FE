@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReportService } from '../app/reports/report.service';
 import { Report } from 'src/app/model/report';
+import { Photo } from './model/photo';
 
 
 @Component({
@@ -17,7 +18,17 @@ export class AppComponent{
   longitude = 26.25;
 
   service: ReportService;
-  report: Report;
+  photo : Photo = { image_url : 'image_url',
+                     photo_id : 'photo_id' };
+  report: Report = { latitude : '47.63333',
+                     longitude : '26.25',
+                     status : 'status',
+                     current_date : 'current_date',
+                     details : 'Wellcome in Suceava!',
+                     photo : this.photo,
+                     user_id : "user_id"};
+
+
 
   constructor(reportService: ReportService) {
     this.service = reportService;
@@ -27,12 +38,13 @@ export class AppComponent{
     this.latitude = event.latitude;
     this.longitude = event.longitude;
     this.report = report;
-    
+
     console.log(report);
   }
 
-  onReportEvent(report){
-    console.log(report);
+  setReport(event){
+    console.log(event);
+    this.report = event;
   }
 
 
@@ -55,4 +67,5 @@ export class AppComponent{
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
+
 }

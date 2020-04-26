@@ -15,8 +15,8 @@ export class ReportsListComponent implements OnInit {
   reports: Observable<any[]>;
   service: ReportService;
 
-  @Output() valueChange = new EventEmitter<{latitude:any, longitude:any}>();
-  //@Output() valueChange = new EventEmitter<{report:Report}>();
+  @Output() onItemClicked = new EventEmitter<{latitude:any, longitude:any}>();
+  @Output() onObjectPicked: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(reportService: ReportService) {
     this.service = reportService;
@@ -31,11 +31,12 @@ export class ReportsListComponent implements OnInit {
   }
 
   getLocationFromItem(report){
-    //alert(latitude+ " "+ longitude);
+
     var lat = report.latitude;
     var long = report.longitude;
-    this.valueChange.emit({latitude : lat, longitude : long});
-    //this.valueChange.emit({report:report});
+    this.onItemClicked.emit({latitude : lat, longitude : long});
+
+    this.onObjectPicked.emit(report);
   }
 
 }  
