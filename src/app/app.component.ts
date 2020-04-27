@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReportService } from '../app/reports/report.service';
 import { Report } from 'src/app/model/report';
 import { Photo } from './model/photo';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AppComponent{
   longitude = 26.25;
 
   service: ReportService;
-  photo : Photo = { image_url : 'image_url',
+  photo : Photo = { image_url : 'https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png',
                      photo_id : 'photo_id' };
   report: Report = { latitude : '47.63333',
                      longitude : '26.25',
@@ -29,9 +30,21 @@ export class AppComponent{
                      user_id : "user_id"};
 
 
+  form: FormGroup;
+  ordersData = [
+    { id: 100, name: 'done' },
+    { id: 200, name: 'in progress' },
+  ];                  
 
-  constructor(reportService: ReportService) {
+
+  constructor(reportService: ReportService, private formBuilder: FormBuilder) {
     this.service = reportService;
+
+    this.form = this.formBuilder.group({
+      orders: new FormArray([])
+    });
+
+    this.addCheckboxes();
   }
 
   onReportListEvent(event, report){
@@ -46,7 +59,6 @@ export class AppComponent{
     console.log(event);
     this.report = event;
   }
-
 
   displayModal(){
     // Get the modal
@@ -66,6 +78,23 @@ export class AppComponent{
   hideModal(){
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
+  }
+
+
+
+  
+  private addCheckboxes() {
+    this.ordersData.forEach((o, i) => {
+      const control = new FormControl(i === 0); // if first item set to true, else false
+      (this.form.controls.orders as FormArray).push(control);
+    });
+  }
+
+  submit() {
+    const selectedOrderIds = this.form.value.orders
+      .map((v, i) => (v ? this.ordersData[i].id : null))
+      .filter(v => v !== null);
+    console.log(selectedOrderIds);
   }
 
 }
