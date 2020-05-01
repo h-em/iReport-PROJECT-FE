@@ -8,4 +8,5 @@ export class Report {
     details: string;
     photo: Photo; 
     user_id: string;
+    report_id: string;
 }

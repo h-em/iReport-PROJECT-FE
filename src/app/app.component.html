@@ -34,17 +34,17 @@
         <div class="img">
           <img src="{{report.photo.image_url}}" alt="Report photo.">
         </div>
-        <p> <b>Details:</b> {{report.details}} s lfs lsdkjg lsdkjg lsg ksjldkg lsdkj sl lgsjl lkdsj lks d glks lks s
-          lsjg </p>
-        <p> <b>Current status:</b> "{{report.status}}" <b> Change status:</b> </p>
+        <p> <b>Details:</b> {{report.details}} </p>
+        <p> <b>Current status:</b> "{{report.status}}"</p>
+        <p> <b> Change status:</b> </p>
 
-
+        <!-- check boxes -->
         <form [formGroup]="form" (ngSubmit)="submit()">
           <label
             formArrayName="orders"
             *ngFor="let order of form.controls.orders.controls; let i = index">
             <input type="checkbox" [formControlName]="i" />
-            {{ordersData[i].name}}
+            {{checkboxDataForNewStatus[i].name}}
           </label>
         
           <button>submit</button>

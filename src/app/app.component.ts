@@ -27,15 +27,19 @@ export class AppComponent{
                      current_date : 'current_date',
                      details : 'Wellcome in Suceava!',
                      photo : this.photo,
-                     user_id : "user_id"};
+                     user_id : "user_id",
+                     report_id :"report_id"};
 
 
   form: FormGroup;
-  ordersData = [
+  checkboxDataForNewStatus = [
     { id: 100, name: 'done' },
     { id: 200, name: 'in progress' },
   ];                  
-
+ 
+  //checkboxDataForNewStatus = ["In progress","Done"];
+  checkboxDataForInProgressStatus = ["New","Done"];
+  checkboxDataForInDoneStatus = ["New","In progress"];
 
   constructor(reportService: ReportService, private formBuilder: FormBuilder) {
     this.service = reportService;
@@ -80,21 +84,19 @@ export class AppComponent{
     modal.style.display = "none";
   }
 
-
-
   
   private addCheckboxes() {
-    this.ordersData.forEach((o, i) => {
+    this.checkboxDataForNewStatus.forEach((o, i) => {
       const control = new FormControl(i === 0); // if first item set to true, else false
       (this.form.controls.orders as FormArray).push(control);
     });
   }
 
   submit() {
-    const selectedOrderIds = this.form.value.orders
-      .map((v, i) => (v ? this.ordersData[i].id : null))
+    const selectedStatusIds = this.form.value.orders
+      .map((v, i) => (v ? this.checkboxDataForNewStatus[i].id : null))
       .filter(v => v !== null);
-    console.log(selectedOrderIds);
-  }
+    console.log(selectedStatusIds);
 
+  }
 }
