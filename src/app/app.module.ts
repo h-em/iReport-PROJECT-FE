@@ -12,8 +12,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReportsListComponent } from './reports/reports-list/reports-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import { MatSelectModule } from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    AppRoutingModule,
+    MatSelectModule, MatFormFieldModule, MatRadioModule, MatButtonModule,
+
     AgmCoreModule.forRoot({apiKey: "AIzaSyDNLDCUUasxv_qdi57ysJIWYNAuPq-d61w"}),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+
+    ReactiveFormsModule, FormsModule,
+    AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]

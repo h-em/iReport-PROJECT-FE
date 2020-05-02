@@ -35,20 +35,27 @@
           <img src="{{report.photo.image_url}}" alt="Report photo.">
         </div>
         <p> <b>Details:</b> {{report.details}} </p>
-        <p> <b>Current status:</b> "{{report.status}}"</p>
-        <p> <b> Change status:</b> </p>
+        <!--
+        <p> <b>Report id:</b> {{report.report_id}} </p>
+        <p> <b>Photo utl:</b> {{report.photo.image_url}} </p>-->
 
-        <!-- check boxes -->
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <label
-            formArrayName="orders"
-            *ngFor="let order of form.controls.orders.controls; let i = index">
-            <input type="checkbox" [formControlName]="i" />
-            {{checkboxDataForNewStatus[i].name}}
-          </label>
-        
-          <button>submit</button>
-        </form>
+        <p> <b>Current status:</b> "{{report.status}}"</p>
+
+        <div>
+          <form [formGroup]="formModal" (ngSubmit)="submit()">
+            <mat-form-field>
+              <mat-label>Select new status</mat-label>
+              <mat-select formControlName="reportStatus">
+                <mat-option *ngFor="let item of checkboxDataForNewStatus" [value]="item.name">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <br>
+            <button mat-raised-button color="primary">submit</button>
+          </form>
+        </div>
 
       </div>
 

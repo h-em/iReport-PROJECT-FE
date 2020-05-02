@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../app/reports/report.service';
 import { Report } from 'src/app/model/report';
 import { Photo } from './model/photo';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,7 +11,8 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent{
+
+export class AppComponent implements OnInit{
   title = 'iReport';
 
   latitude = 47.63333;
@@ -31,24 +31,20 @@ export class AppComponent{
                      report_id :"report_id"};
 
 
-  form: FormGroup;
+  formModal: FormGroup;
   checkboxDataForNewStatus = [
     { id: 100, name: 'done' },
     { id: 200, name: 'in progress' },
-  ];                  
- 
-  //checkboxDataForNewStatus = ["In progress","Done"];
-  checkboxDataForInProgressStatus = ["New","Done"];
-  checkboxDataForInDoneStatus = ["New","In progress"];
+  ];
 
-  constructor(reportService: ReportService, private formBuilder: FormBuilder) {
+  constructor(reportService: ReportService) {
     this.service = reportService;
+  }
 
-    this.form = this.formBuilder.group({
-      orders: new FormArray([])
+  ngOnInit() {
+    this.formModal = new FormGroup({
+      reportStatus: new FormControl('', Validators.required)
     });
-
-    this.addCheckboxes();
   }
 
   onReportListEvent(event, report){
@@ -70,7 +66,8 @@ export class AppComponent{
     //display the modal
     modal.style.display = "block";
 
-    // When the user clicks anywhere outside of the modal, close it
+
+  // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
@@ -84,19 +81,18 @@ export class AppComponent{
     modal.style.display = "none";
   }
 
-  
-  private addCheckboxes() {
-    this.checkboxDataForNewStatus.forEach((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.orders as FormArray).push(control);
-    });
-  }
-
   submit() {
-    const selectedStatusIds = this.form.value.orders
-      .map((v, i) => (v ? this.checkboxDataForNewStatus[i].id : null))
-      .filter(v => v !== null);
-    console.log(selectedStatusIds);
+    if (this.formModal.invalid) {
+      return;
+    }
 
+    var status = this.formModal.controls.reportStatus.value;
+    var report_id = this.report.report_id;
+    var user_id = this.report.user_id;
+    this.service.updateStatus(user_id, report_id, status);
+
+    //hide modal on submit click
+    this.hideModal();
   }
+
 }

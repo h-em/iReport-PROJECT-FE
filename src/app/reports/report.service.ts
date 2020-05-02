@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { Report } from '../model/report';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -15,8 +14,8 @@ export class ReportService {
   latitude;
   longitude;
 
-  constructor(private db: AngularFireDatabase) {
-    this.reports = db.list(this.basePath).valueChanges();
+  constructor(private firebase: AngularFireDatabase) {
+    this.reports = firebase.list(this.basePath).valueChanges();
   }
 
   getReportsList(){
@@ -32,6 +31,18 @@ export class ReportService {
       var x = this.latitude;
       var y = this.longitude;
       return {x,y};
+  }
+
+  updateStatus(userId, reportId, status){
+
+    var updatesInReports={};
+    updatesInReports['/reports/' + reportId + '/status'] = status;
+    firebase.database().ref().update(updatesInReports);
+
+    var updatesInUserReports={};
+    updatesInUserReports['/user_reports/' + '/' +userId +'/'+ reportId + '/status'] = status;
+    firebase.database().ref().update(updatesInUserReports);
+
   }
 
 }
